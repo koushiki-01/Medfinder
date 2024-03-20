@@ -1,4 +1,4 @@
-# MinorWebApp
+# MinorWebApp(Medfinfer)
 A Java web application.
 
 ### Requirements
