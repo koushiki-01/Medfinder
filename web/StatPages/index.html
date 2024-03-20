@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MedFinder</title>
+        <link rel="stylesheet" href="../stylesheet/main-style.css">
+        <style>
+          main {
+              padding-top: 30px;
+          }
+          .image-container {
+            display: flex;
+            justify-content: space-evenly;
+            margin-top: 10px;
+          }
+          .image-container img {
+            width: 30%;
+            height: auto;
+            transition: transform .2s;
+          }
+          .image-container img:hover {
+            transform: scale(1.1);
+          }
+      </style>
+    </head>
+    <body>
+        <header>
+            <img src="../media/logo.png" class="logo">
+            <span class="heading">MedFinder</span>
+                <nav class="navbar">
+                <a href="http://localhost:8080/MinorWebApp/StatPages/login.html">Login</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/about.html">About Us</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/terms.html">Terms</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-dropdown-button">Register</a>
+                    <div class="navbar-dropdown-content">
+                        <a href="http://localhost:8080/MinorWebApp/StatPages/registerUser.html">As User</a>
+                    <a href="http://localhost:8080/MinorWebApp/StatPages/registerPharmacy.html">As Pharmacy</a>
+                    </div>
+                </div>
+                </nav>
+        </header>
+        <main>
+            <div class="about-container">
+              <h1>MedFinder</h1>
+              <div class="about-box">
+                <p>Welcome to MedFinder, your one-stop shop for all your pharmaceutical needs.</p>
+                <p>MedFinder bridges the gap between local pharmacies and customers. Local Pharmacies and Customer can avail seamless facilities to manage their online operations and order medicine from the comfort of their home</p>
+                <p>Supporting local businesses and economy is one of our main motto and we take immense pride in that.</p>
+              </div>
+              <br>
+              <div class="image-container">
+                <img src="../media/index/medicine-1.jpg" alt="image 1">
+                <img src="../media/index/medicine-2.jpg" alt="image 2">
+                <img src="../media/index/medicine-3.jpg" alt="image 3">
+              </div>
+            </div>
+        </main>
+        <footer>
+          <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+          <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+          <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+        </footer>
+    </body>
+</html>

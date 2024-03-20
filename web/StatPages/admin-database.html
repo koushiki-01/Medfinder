@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Database</title>
+    <link rel="stylesheet" href="../stylesheet/main-style.css">
+    <style>
+        h1 {
+            text-align: center;
+            padding-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../media/logo.png" class="logo">
+        <span class="heading">MedFinder</span>
+        <nav class="navbar">
+        <a href="http://localhost:8080/MinorWebApp/StatPages/admin-database.html">Home</a>
+        <a href="http://localhost:8080/MinorWebApp/StatPages/about.html">About Us</a>
+        <div class="navbar-dropdown">
+            <a class="navbar-dropdown-button">Settings</a>
+            <div class="navbar-dropdown-content">
+                <a href="http://localhost:8080/MinorWebApp/SessLogOut">Log Out</a>
+                <a href="http://localhost:8080/MinorWebApp/PageServes/changePassword.jsp">Change Password</a>
+            </div>
+        </div>
+        </nav>
+    </header>
+    <main>
+        <div class="table-box-container">
+            <div class="table-box">
+                <h1>Project Database</h1>
+                <br>
+                <div id="error-alert"></div>
+                <div id="success-alert"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table Name</th>
+                            <th>Description</th>
+                            <th>Link to database table</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CUSTOMER</td>
+                            <td>Information about the registered customers.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/customer.jsp">Customer</a></td>
+                        </tr>
+                        <tr>
+                            <td>PHARMACY</td>
+                            <td>Information about the registered pharmacies.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/pharmacy.jsp">Pharmacy</a></td>
+                        </tr>
+                        <tr>
+                            <td>ORDERS</td>
+                            <td>Orders accepted by the system.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/orders.jsp">Orders</a></td>
+                        </tr>
+                        <tr>
+                            <td>PHARM_MED_STOCK</td>
+                            <td>An individual pharmacy's medicine stock.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/medPharmStock.jsp">Pharm_Med_Stock</a></td>
+                        </tr>
+                        <tr>
+                            <td>MEDICINE</td>
+                            <td>Individual information about medicines.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/medicine.jsp">Medicine</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+    <script src="/MinorWebApp/scripts/showResponse.js"></script>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        let response = params.get("response");
+
+        if (response == "delete-error") {
+            showError("Data cannot be deleted because it has records in the child table.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+    </script>
+    <footer>
+        <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+        <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+        <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Home</title>
+    <link rel="stylesheet" href="../stylesheet/main-style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <header>
+        <img src="../media/logo.png" class="logo">
+        <span class="heading">MedFinder</span>
+        <nav class="navbar">
+        <a href="http://localhost:8080/MinorWebApp/StatPages/PharmacyHome.html">Home</a>
+        <a href="http://localhost:8080/MinorWebApp/StatPages/about.html">About Us</a>
+        <a href="http://localhost:8080/MinorWebApp/PageServes/FeedBack.jsp">Feedback</a>
+        <div class="navbar-dropdown">
+            <!-- <a class="navbar-dropdown-button"><span class="material-symbols-outlined">person</span>Profile</a> -->
+            <a class="navbar-dropdown-button">Settings</a>
+            <div class="navbar-dropdown-content">
+                <a href="http://localhost:8080/MinorWebApp/SessLogOut">Log Out</a>
+                <a href="http://localhost:8080/MinorWebApp/PageServes/changePassword.jsp">Change Password</a>
+            </div>
+        </div>
+        </nav>
+    </header>
+    <main>
+        <div class="table-box-container">
+            <div class="table-box">
+                <h2>Pharmacy Home Page</h2>
+                <br>
+                <div id="error-alert"></div>
+                <div id="success-alert"></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Description</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Check Orders</td>
+                            <td>Information about the Orders.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/CheckOrders.jsp">Check Orders</a></td>
+                        </tr>
+                        <tr>
+                            <td>Pharmacy Stock</td>
+                            <td>See your medicine stock.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/PharmacyStock.jsp">Pharmacy Stock</a></td>
+                        </tr>
+                        <tr>
+                            <td>Add New Medicine</td>
+                            <td>Add a new medicine to your inventory.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/AddMedicine.jsp">Add Medicine</a></td>
+                        </tr>
+                        <tr>
+                            <td>Update Inventory</td>
+                            <td>Update exisiting medicine inventory.</td>
+                            <td><a href="http://localhost:8080/MinorWebApp/PageServes/UpdateInventory.jsp">Update Inventory</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br>
+                <div class="profile-edit-container">
+                    <form method="POST" action="http://localhost:8080/MinorWebApp/PageServes/ModifyPharmacy.jsp">
+                        <button type="submit" name="Modify" class="button-33"><span class="material-symbols-outlined">account_circle</span> Edit Profile</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src="/MinorWebApp/scripts/showResponse.js"></script>
+        <script>
+            let params = (new URL(document.location)).searchParams;
+            let response = params.get("response");
+
+            if (response == "feedback-success") {
+                showSuccess("Feedback recieved successfully.");
+                params.delete('response');
+                window.history.replaceState({}, document.title, url.toString());
+            }
+            if (response == "edit-fail") {
+                showError("Failed to update profile.");
+                params.delete('response');
+                window.history.replaceState({}, document.title, url.toString());
+            }
+            if (response === "edit-success") {
+                showSuccess("Profile edited successfully.");
+                params.delete('response');
+                window.history.replaceState({}, document.title, url.toString());
+            }
+            if (response === "update-success") {
+                showSuccess("Inventory updated successfully.");
+                params.delete('response');
+                window.history.replaceState({}, document.title, url.toString());
+            }
+            if (response == "update-fail") {
+                showError("Failed to update inventory.<br>Try again later.");
+                params.delete('response');
+                window.history.replaceState({}, document.title, url.toString());
+            }
+        </script>
+    </main>
+    <footer>
+        <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+        <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+        <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+    </footer>
+</body>
+</html>
