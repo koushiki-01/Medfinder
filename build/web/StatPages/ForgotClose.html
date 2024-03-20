@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../stylesheet/main-style.css">
+        <title>Email sent.</title>
+        <style>
+            main {
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="../media/logo.png" class="logo">
+            <span class="heading">MedFinder</span>
+            <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="registerUser.html">Register</a>
+            <a href="about.html">About Us</a>
+            <a href="#">Contact</a>
+            </nav>
+        </header>
+        <main>
+            <div class="text-box-container">
+                <div class="text-box">
+                    <h1>Email sent.</h1>
+                    <br>
+                    <p>
+                        A new link has been sent to your email.<br>
+                        <br>
+                        <a href="login.html" id="redirect-timer">You will be redirected in <b>7</b> seconds...</a>
+                    </p>
+                    <br>
+                </div>
+            </div>
+        </main>
+        <script>
+            let counter = 7;
+            const intervalId = setInterval(() => {
+              counter--;
+              document.getElementById('redirect-timer').innerHTML = 
+                `<span id="redirect-timer">You will be redirected in <b>${counter}</b> seconds...</span>`;
+              if (counter === 0) {
+                clearInterval(intervalId);
+                location.href="login.html";
+              }
+            }, 1000);
+          </script>
+        <footer>
+            <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+            <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+            <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../stylesheet/main-style.css">
+    <style>
+        .form-box {
+            width: 30%;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+                document.forms['login'].addEventListener('submit', function(event) {
+                    if(!validateForm()) {
+                        event.preventDefault();
+                    } else {
+                        window.location.hash = '';
+                    }
+                });
+            };
+
+        function validateForm() {
+            var email = document.forms['login']['email'].value;
+            var password = document.forms['login']['password'].value;
+
+            if(email === "" && password === "") {
+                showError("All fields are required.");
+                return false;
+            }
+            else if(!email.includes('@')) {
+                showError("Please enter a valid email address.");
+                return false;
+            }
+            else if(password === "") {
+                showError("Please enter a valid password.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <img src="../media/logo.png" class="logo">
+        <span class="heading">MedFinder</span>
+            <nav class="navbar">
+            <a href="http://localhost:8080/MinorWebApp/StatPages/index.html">Home</a>
+            <a href="http://localhost:8080/MinorWebApp/StatPages/about.html">About Us</a>
+            <a href="http://localhost:8080/MinorWebApp/StatPages/terms.html">Terms</a>
+            <div class="navbar-dropdown">
+                <a class="navbar-dropdown-button">Register</a>
+                <div class="navbar-dropdown-content">
+                    <a href="http://localhost:8080/MinorWebApp/StatPages/registerUser.html">As User</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/registerPharmacy.html">As Pharmacy</a>
+                </div>
+            </div>
+            </nav>
+    </header>
+    <main>
+        <div class="form-container">
+            <div class="form-box" id="form-login-container">
+                <form method="POST" name="login" action="http://localhost:8080/MinorWebApp/CheckLogin">
+                    <h2>LOG IN</h2>
+                    <br>
+                    <div id="error-alert"></div>
+                    <div id="success-alert"></div>
+                    <br>
+                    <div class="input-group">
+                        <label for="email">Email:</label>
+                        <input type="text" name="email" id="email" placeholder="example@domain.com">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" placeholder="********">
+                    </div>
+                    <br>
+                    <div class="input-group button-group">
+                        <label></label>
+                        <button type="submit" class="button-80">Login</button>
+                   </div>
+                   <br>
+                    <div class="form-box-links">
+                        <a href="ForgotPassword.html">Forgot Password</a><br>
+                        <a href="registerUser.html">Register User</a><br>
+                        <a href="registerPharmacy.html">Register Pharmacy</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script src="/MinorWebApp/scripts/showResponse.js"></script>
+    <script>
+        let params = (new URL(document.location)).searchParams;
+        let response = params.get("response");
+
+        if (response == "incorrect-password") {
+            showError("Incorrect email or password.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "change-password-success") {
+            showSuccess("Password changed successfully.<br>Please try logging in again.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "customer-deleted") {
+            showSuccess("Account deleted successfully.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "pharmacy-deleted") {
+            showSuccess("Account deleted successfully.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "account-created") {
+            showSuccess("Account created successfully.<br>Please try logging in.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "account-failed") {
+            showError("Failed to create account.<br>Please try again later.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+        if (response == "reset-password-success") {
+            showSuccess("Password resetted successfully.<br>Please try logging in.");
+            params.delete('response');
+            window.history.replaceState({}, document.title, url.toString());
+        }
+    </script>
+    <footer>
+        <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+        <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+        <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+    </footer>
+</body>
+</html>

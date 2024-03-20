@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../stylesheet/main-style.css">
+        <title>Register User</title>
+        <script src="/MinorWebApp/scripts/showResponse.js"></script>
+        <script>
+            window.onload = function() {
+                document.forms['register'].addEventListener('submit', function(event) {
+                    if(!validateForm()) {
+                        event.preventDefault();
+                    } else {
+                        window.location.hash = '';
+                    }
+                });
+            };
+            
+            function validateForm() {
+                var fname = document.forms['register']['fname'].value;
+                var lname = document.forms['register']['lname'].value;
+                var email = document.forms['register']['email'].value;
+                var phone = document.forms['register']['phone'].value;
+                var age = document.forms['register']['age'].value;
+                var address = document.forms['register']['address'].value;
+                var city = document.forms['register']['city'].value;
+                var pincode = document.forms['register']['pincode'].value;
+                var gender = document.forms['register']['gender'].value;
+                var sques = document.forms['register']['sques'].value;
+                var sans = document.forms['register']['sans'].value;
+                var password = document.forms['register']['password'].value;
+                var confirmPassword = document.forms['register']['confirm-password'].value;
+        
+                if(fname === "" || lname === "" || email === "" || phone === "" || age === "" || address === "" || city === "" || pincode === "" || gender === "" || sques === "" || sans === "" || password === "" || confirmPassword === "") {
+                    showError("All fields are required.");
+                    return false;
+                }
+                if(!email.includes('@')) {
+                    showError("Please enter a valid email address.");
+                    return false;
+                }
+                if(phone.length !== 10 || isNaN(phone)) {
+                    showError("Please enter a valid phone number.");
+                    return false;
+                }
+                if(isNaN(age) || age < 13) {
+                    showError("Please enter a valid age.<br>You must be 13 or over to use our services.");
+                    return false;
+                }
+                if(pincode.length !== 6 || isNaN(pincode)) {
+                    showError("Please enter a valid pincode.");
+                    return false;
+                }
+                if(password.length < 8) {
+                    showError("Password must be at least 8 characters.");
+                    return false;
+                }
+                if(password !== confirmPassword) {
+                    showError("Passwords do not match.");
+                    return false;
+                }
+                return true;
+            }
+
+            function maxInputNumber(element, maxLength) {
+                if(element.value.length > maxLength) {
+                    element.value = element.value.slice(0, maxLength);
+                }
+            }
+        </script>
+        <script>
+            function validateCheckbox() {
+                var checkbox = document.getElementById('terms-checkbox');
+                var submit = document.getElementById('submit');
+                
+                if (checkbox.checked) {
+                    submit.disabled = false;
+                } else {
+                    submit.disabled = true;
+                }
+            }
+        </script>     
+    </head>
+    <body>
+        <header>
+            <img src="../media/logo.png" class="logo">
+            <span class="heading">MedFinder</span>
+                <nav class="navbar">
+                <a href="http://localhost:8080/MinorWebApp/StatPages/login.html">Login</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/about.html">About Us</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/terms.html">Terms</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-dropdown-button">Register</a>
+                    <div class="navbar-dropdown-content">
+                        <a href="http://localhost:8080/MinorWebApp/StatPages/registerUser.html">As User</a>
+                    <a href="http://localhost:8080/MinorWebApp/StatPages/registerPharmacy.html">As Pharmacy</a>
+                    </div>
+                </div>
+                </nav>
+        </header>
+        <main>
+            <div class="form-container">
+                <div class="form-box">
+                    <form method="POST" name="register" action="http://localhost:8080/MinorWebApp/RegisterUser">
+                        <h2>REGISTER</h2>
+                        <br>
+                        <div id="error-alert"></div>
+                        <br>
+                        <div class="input-group">
+                            <label for="fname">First Name:</label>
+                            <input type="text" id="fname" name="fname" placeholder="John">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="lname">Last Name:</label>
+                            <input type="text" id ="lname" name="lname" placeholder="Doe">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" placeholder="example@domain.com">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="phone">Phone:</label>
+                            <input type="text" id="phone" name="phone" oninput="maxInputNumber(this,10)" placeholder="9876543210">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="age">Age:</label>
+                            <input type="text" name="age" placeholder="18">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="address">Address:</label>
+                            <input type="text" name="address" placeholder="123, Gold Street">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="city">City:</label>
+                            <select id="city" name="city">
+                                <option value="" selected disabled hidden>Select a City</option>
+                                <option value="KOLKATA">Kolkata</option>
+                                <option value="HOWRAH">Howrah</option>
+                                <option value="BURDWAN">Burdwan</option>
+                                <option value="DURGAPUR">Durgapur</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="pincode">Pincode:</label>
+                            <input type="number" name="pincode" placeholder="700000" oninput="maxInputNumber(this,6)">
+                        </div>
+                        <br>
+                        <div class="input-group radio-group">
+                            <label for="gender">Gender: </label>
+                            <input type="radio" name="gender" value="M">Male
+                            <input type="radio" name="gender" value="F">Female
+                        </div> 
+                        <br>
+                        <div class="input-group">
+                            <label for="sques">Security Question:</label>
+                            <select id="sques" name="sques">
+                                <option value="" selected disabled hidden>Select a Security Question</option>
+                                <option value="CHILDHOOD NICKNAME?">Childhood nickname?</option>
+                                <option value="WHAT IS YOUR MOTHER'S MAIDEN NAME?">What is your mother's maiden name?</option>
+                                <option value="WHAT SCHOOL DID YOU GO TO?">What school did you go to?</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="sans">Security Answer:</label>
+                            <input type="text" name="sans" id="sans" placeholder="Security Answer">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="password">Password:</label>
+                            <input type="password" name="password" placeholder="********">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <label for="confirm-password">Confirm password:</label>
+                            <input type="password" name="confirm-password" placeholder="********">
+                        </div>                         
+                        <br>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="terms-checkbox" name="terms-checkbox" onchange="validateCheckbox()">
+                            <label for="terms-checkbox">I agree to the <a href="http://localhost:8080/MinorWebApp/StatPages/terms.html">terms and conditions</a></label>
+                        </div>
+                        <br>
+                        <div class="input-group button-group">
+                            <label></label>
+                            <button type="submit" id="submit" class="button-80" disabled>Submit</button>
+                            <button type="reset" class="button-80">Clear</button>
+                    </div>                   
+                        <br>
+                        <div class="form-box-links">
+                        Have an account? <a href="login.html">Login in</a><br>
+                        Not a user? <a href="registerPharmacy.html">Register as Pharmacy</a>
+                        <br>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+            <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+            <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+        </footer>
+    </body>
+</html>

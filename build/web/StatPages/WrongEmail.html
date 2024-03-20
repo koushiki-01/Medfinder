@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <link rel="icon" href="../media/favion.ico" type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../stylesheet/main-style.css">
+        <title>Email not found</title>
+        <style>
+            main {
+                padding: 0px;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <img src="../media/logo.png" class="logo">
+            <span class="heading">MedFinder</span>
+                <nav class="navbar">
+                <a href="http://localhost:8080/MinorWebApp/StatPages/index.html">Home</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/login.html">Login</a>
+                <a href="http://localhost:8080/MinorWebApp/StatPages/terms.html">Terms</a>
+                <div class="navbar-dropdown">
+                    <a class="navbar-dropdown-button">Register</a>
+                    <div class="navbar-dropdown-content">
+                        <a href="http://localhost:8080/MinorWebApp/StatPages/registerUser.html">As User</a>
+                    <a href="http://localhost:8080/MinorWebApp/StatPages/registerPharmacy.html">As Pharmacy</a>
+                    </div>
+                </div>
+                </nav>
+        </header>
+        <main>
+            <div class="text-box-container">
+                <div class="text-box">
+                    <h1>Email not found</h1>
+                    <br>
+                    <p>
+                        We could not find the email id in our records. Please check that you've entered the correct email address.<br>
+                        <br>
+                        <a href="ForgotPassword.html" id="redirect-timer">Returning to previous page in 7 seconds...</a>
+                    </p>
+                </div>
+            </div>
+        </main>
+        <script>
+            let counter = 7;
+            const intervalId = setInterval(() => {
+              counter--;
+              document.getElementById('redirect-timer').innerHTML = 
+                `<a href="ForgotPassword.html">Returning to previous page in ${counter} seconds...</a>`;
+              if (counter === 0) {
+                clearInterval(intervalId);
+                window.location.href = 'http://localhost:8080/MinorWebApp/StatPages/ForgotPassword.html';
+              }
+            }, 1000);
+        </script>
+        <footer>
+            <a href="https://www.facebook.com" target="_blank"><img src="../media/facebook-icon.png" class="social-icon" alt="Facebook"></a>
+            <a href="https://www.twitter.com" target="_blank"><img src="../media/twitter-icon.ico" class="social-icon" alt="Twitter"></a>
+            <a href="https://www.pinterest.com" target="_blank"><img src="../media/pinterest-icon.png" class="social-icon" alt="Pintrest"></a>
+        </footer>
+    </body>
+</html>
